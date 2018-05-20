@@ -131,8 +131,9 @@ public class Data {
 		int max = 0;
 		String out = "";
 		for (int j = 0; j < explanatorySet.length; j++) {
-			if(max < attribute.frequency(this, idList, attribute.getName())) {
-				max = attribute.frequency(this, idList, attribute.getName());
+			int thisFreq = attribute.frequency(this, idList, attribute.getName());
+			if(max < thisFreq) {
+				max = thisFreq;
 				out = attribute.getName();
 			}
 		}

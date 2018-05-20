@@ -24,28 +24,50 @@ public class ClusterSet {
 			add(new Cluster(centroidI));
 		}
 	}
-	
+
 	Cluster nearestCluster(Tuple tuple) {
-		double min = tuple.getDistance(c[0].getCentroid()) ;
+		double min = tuple.getDistance(c[0].getCentroid());
 		Cluster outC = c[0];
 		for (int i = 1; i < c.length; i++) {
-			if(min < tuple.getDistance(c[i].getCentroid())) {
+			if (min < tuple.getDistance(c[i].getCentroid())) {
 				min = tuple.getDistance(c[i].getCentroid());
 				outC = c[i];
 			}
 		}
 		return outC;
 	}
-	
+
 	public Cluster currentCluster(int id) {
 		for (int i = 0; i < c.length; i++) {
-			if(c[i].contain(id)) {
+			if (c[i].contain(id)) {
 				return c[i];
 			}
 		}
 		return null;
 	}
+
+	public void updateCentroids(Data data) {
+		for (int i = 0; i < c.length; i++) {
+			c[i].computeCentroid(data);
+		}
+	}
 	
+	@Override
+	public String toString() {
+		String out = "";
+		for (Integer i = 0; i < c.length; i++) {
+			out +=  i + c[i].toString() + "\n";
+		}
+		return out;
+	}
 	
+	public String toString(Data data) {
+		String out = "";
+		for (int i = 0; i < c.length; i++) {
+			if(c[i] != null)
+				out+=i+":"+c[i].toString(data)+"\n";
+		}
+		return out;
+	}
 
 }
