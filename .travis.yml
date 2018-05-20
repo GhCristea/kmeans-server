@@ -1,13 +1,8 @@
 language: java
-install: skip
 
-addons:
-  apt:
-    packages:
-      - oracle-java8-installer
+jdk:
+  - oraclejdk8
+  - openjdk7
 
- script: true
- 
-matrix:
-  include:
-    - language: java
+before_install:
+  - cd java
