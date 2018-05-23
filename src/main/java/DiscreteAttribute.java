@@ -4,28 +4,25 @@ public class DiscreteAttribute extends Attribute {
 		super(name, index);
 		this.values = values;
 	}
-	
+
 	public int getNumberOfDistinctValues() {
 		return values.length;
 	}
-	
+
 	public String getValues(int i) {
 		return values[i];
 	}
-	
+
 	public int frequency(Data data, ArraySet idList, String v) {
-		
-		for (int i = 0; i < data.getNumberOfExamples(); i++) {
-			if(v == data.getAttributeValue(i, getIndex())) {
-				idList.add(i);
+		int out = 0;
+		for (int i = 0; i < idList.toArray().length; i++) {
+			if (data.getAttributeValue(i, getIndex()).equals(v)) {
+				out++;
 			}
 		}
-		int a[] = idList.toArray();
-		
-		return a.length;
+		return out;
 	}
-	
+
 	private String values[];
-	
-	
+
 }
