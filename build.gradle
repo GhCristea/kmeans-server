@@ -27,4 +27,11 @@ dependencies {
     // Use JUnit test framework
     testImplementation 'junit:junit:4.12'
 }
+checkstyle {
+	// Whether to allow the build to continue if there are warnings. Default: ignoreFailures = false
+	ignoreFailures = true
+	sourceSets = [sourceSets.main]
+	// Checkstyle version
+	toolVersion "8.8"
+}
 
