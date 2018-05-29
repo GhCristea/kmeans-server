@@ -16,7 +16,7 @@ before_script:
   - chmod +x gradlew
   
 script:
-  - ./gradlew check && ./gradlew dockerDistTar && docker build -t $DOCKER_ORGANIZATION/$DOCKER_REPO ./build/docker/
+  - ./gradlew check && docker build -t gheo/kmeans ./build/docker/
 
 after_success:
   - if [ "$TRAVIS_BRANCH" == "master" ] && [ "$TRAVIS_TEST_RESULT" == 0 ]; then 
