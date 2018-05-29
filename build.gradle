@@ -11,9 +11,9 @@ buildscript {
   repositories {
     jcenter()
   }
-  /*dependencies {
+  dependencies {
     classpath "com.bmuschko:gradle-docker-plugin:3.2.3"
-  }*/
+  }
 }
 
 buildscript {
@@ -64,7 +64,7 @@ docker {
         baseImage = 'openjdk:8'
         //maintainer = '<name> "<email>"'
         // ports = [9090, 5701]
-        tag = 'sna4slack:1.0'
+        tag = 'kmeans:1.0'
     }
 }
 
