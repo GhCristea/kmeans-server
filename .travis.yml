@@ -21,6 +21,6 @@ script:
 after_success:
   - if [ "$TRAVIS_BRANCH" == "master" ] && [ "$TRAVIS_TEST_RESULT" == 0 ]; then 
       docker login -u "$DOCKER_USERNAME" -p "$DOCKER_PASSWORD";
-      docker push $DOCKER_REPOs;
+      docker push $DOCKER_REPO;
     fi
   - ./gradlew jacocoTestReport coveralls
