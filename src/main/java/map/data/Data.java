@@ -1,3 +1,4 @@
+package map.data;
 import java.util.Random;
 
 public class Data {
@@ -6,7 +7,7 @@ public class Data {
 	private int numberOfExamples;
 	private Attribute explanatorySet[];
 
-	Data() {
+	public Data() {
 
 		// data
 

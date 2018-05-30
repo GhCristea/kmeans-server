@@ -132,7 +132,7 @@ checkstyle {
 	ignoreFailures = true
 	sourceSets = [sourceSets.main]
 	// Checkstyle version
-	toolVersion "8.8"
+	toolVersion "8.10"
 }
 
 junitPlatform {
@@ -197,4 +197,4 @@ test {
 }
 
 // Main class
-mainClassName = 'MainTest'
+mainClassName = 'map.main/MainTest'

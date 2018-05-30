@@ -1,3 +1,4 @@
+package map.data;
 
 public class Tuple {
 	Item [] tuple;

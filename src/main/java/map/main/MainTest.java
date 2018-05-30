@@ -1,4 +1,6 @@
+package map.main;
 
+import map.data.*;
 public class MainTest {
 
 	/**

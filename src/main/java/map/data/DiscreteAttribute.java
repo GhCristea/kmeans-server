@@ -1,3 +1,4 @@
+package map.data;
 
 public class DiscreteAttribute extends Attribute {
 	public DiscreteAttribute(String name, int index, String values[]) {

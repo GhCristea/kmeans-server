@@ -1,3 +1,4 @@
+package map.data;
 
 public abstract class Item {
 	private Attribute attribute;

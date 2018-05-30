@@ -1,3 +1,4 @@
+package map.data;
 
 public class Cluster {
 	private Tuple centroid;

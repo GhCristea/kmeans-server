@@ -1,3 +1,4 @@
+package map.data;
 
 import java.util.Arrays;
 

@@ -1,3 +1,4 @@
+package map.data;
 
 public abstract class Attribute {
 	public Attribute(String name, int index) {
