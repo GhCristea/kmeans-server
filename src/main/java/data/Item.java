@@ -1,4 +1,6 @@
-package map.data;
+package data;
+
+import utility.ArraySet;
 
 public abstract class Item {
 	private Attribute attribute;
@@ -27,7 +29,7 @@ public abstract class Item {
 
 	public abstract double distance(Object a);
 	
-	void update(Data data, ArraySet clusteredData) {
+	public void update(Data data, ArraySet clusteredData) {
 		value = data.computePrototype(clusteredData, attribute);
 	}
 	

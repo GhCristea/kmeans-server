@@ -1,4 +1,4 @@
-package map.data;
+package data;
 
 public abstract class Attribute {
 

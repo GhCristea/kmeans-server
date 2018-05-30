@@ -1,4 +1,8 @@
-package map.data;
+package mining;
+
+import data.Data;
+import data.Tuple;
+import utility.ArraySet;
 
 public class Cluster {
 	private Tuple centroid;

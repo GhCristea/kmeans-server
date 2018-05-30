@@ -1,4 +1,7 @@
-package map.data;
+package mining;
+
+import data.Data;
+import data.OutOfRangeSampleSize;
 
 public class KmeansMiner {
 
@@ -12,7 +15,7 @@ public class KmeansMiner {
 		return c;
 	}
 	
-	public int kmeans(Data data) {
+	public int kmeans(Data data) throws OutOfRangeSampleSize {
 		int numberOfIterations=0;
 		c.initializeCentroids(data);
 		boolean changedCluster=false;

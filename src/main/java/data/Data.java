@@ -1,12 +1,13 @@
-package map.data;
+package data;
 
 import java.util.Random;
-
+import utility.ArraySet;
 public class Data {
 
 	private Object data[][];
 	private int numberOfExamples;
 	private Attribute explanatorySet[];
+	private int distinctTuples;
 
 	public Data() {
 
@@ -21,7 +22,7 @@ public class Data {
 
 		// numberOfExamples.
 		numberOfExamples = 14;
-
+		distinctTuples = countDistinctTuples();
 		// explanatory Set.
 		explanatorySet = new Attribute[5];
 
@@ -92,13 +93,13 @@ public class Data {
 		}
 		return out;
 	}
-
+/*
 	public static void main(String args[]) {
 		Data trainingSet = new Data();
 		System.out.println(trainingSet);
 
 	}
-
+*/
 	public Object computePrototype(ArraySet clusteredData, Attribute attribute) {
 
 		Object out = computePrototype(clusteredData, (DiscreteAttribute) attribute);
@@ -126,7 +127,7 @@ public class Data {
 		return tuple;
 	}
 
-	int[] sampling(int k) {
+	public int[] sampling(int k) throws OutOfRangeSampleSize{
 		int[] centroidIndexes = new int[k];
 		// scegli k centroid differenti in data
 		Random rand = new Random();
@@ -163,5 +164,16 @@ public class Data {
 		}
 		return true;
 	}
-
+	
+	private int countDistinctTuples() {
+		int localDistinctTuples = 0;
+		for (int i = 0; i < getNumberOfExamples() - 1; i++) {
+			for(int j = i+1;j < getNumberOfExamples(); j++ ) {
+				if(!compare(i, j)) {
+					localDistinctTuples++;
+				}
+			}
+		}
+		return localDistinctTuples;
+	}
 }

@@ -1,4 +1,4 @@
-package map.data;
+package data;
 
 public class Tuple {
 	Item [] tuple;
@@ -20,8 +20,8 @@ public class Tuple {
 	}
 	
 	public double getDistance(Tuple obj) {
-		double out = 0.0;
-		for (int i = 0; i < tuple.length && i<obj.getLength(); i++) {
+		double out = .0;
+		for (int i = 0; i<obj.getLength(); i++) {
 			out += tuple[i].distance(obj.get(i));
 		}
 		return out;

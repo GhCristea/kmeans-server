@@ -1,4 +1,4 @@
-package map.data;
+package data;
 
 public class ContinuousAttribute extends Attribute {
 	private double min;

@@ -1,4 +1,8 @@
-package map.data;
+package mining;
+
+import data.Data;
+import data.OutOfRangeSampleSize;
+import data.Tuple;
 
 public class ClusterSet {
 
@@ -18,7 +22,7 @@ public class ClusterSet {
 		return arrayOfClusters[index];
 	}
 
-	public void initializeCentroids(Data data) {
+	public void initializeCentroids(Data data) throws OutOfRangeSampleSize {
 		int centroidIndexes[] = data.sampling(arrayOfClusters.length);
 		for (int i = 0; i < centroidIndexes.length; i++) {
 			Tuple centroidI = data.getItemSet(centroidIndexes[i]);
