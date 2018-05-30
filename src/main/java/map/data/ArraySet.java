@@ -15,7 +15,6 @@ public class ArraySet {
 
 	// return true if add is changing the arraySet
 	boolean add(int i) {
-
 		if (i >= set.length) {
 			// enlarge the set
 			boolean temp[] = new boolean[set.length * 2];
@@ -30,7 +29,6 @@ public class ArraySet {
 		if (i >= size)
 			size = i + 1;
 		return !added;
-
 	}
 
 	boolean delete(int i) {
@@ -42,10 +40,8 @@ public class ArraySet {
 				int j;
 				for (j = size - 1; j >= 0 && !set[j]; j--)
 					;
-
 				size = j + 1;
 			}
-
 			return deleted;
 		}
 		return false;

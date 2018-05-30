@@ -1,4 +1,5 @@
 package map.data;
+
 import java.util.Random;
 
 public class Data {
@@ -9,8 +10,7 @@ public class Data {
 
 	public Data() {
 
-		// data
-
+		// data.
 		data = new Object[][] { { "Sunny", "Hot", "High", "Weak", "No" }, { "Sunny", "Hot", "High", "Strong", "No" },
 				{ "Overcast", "Hot", "High", "Weak", "Yes" }, { "Rain", "Mild", "High", "Weak", "Yes" },
 				{ "Rain", "Cool", "Normal", "Weak", "Yes" }, { "Rain", "Cool", "Normal", "Strong", "No" },
@@ -19,18 +19,11 @@ public class Data {
 				{ "Sunny", "Mild", "Normal", "Strong", "Yes" }, { "Overcast", "Mild", "High", "Strong", "Yes" },
 				{ "Overcast", "Hot", "Normal", "Weak", "Yes" }, { "Rain", "Mild", "High", "Strong", "No" } };
 
-		// numberOfExamples
-
+		// numberOfExamples.
 		numberOfExamples = 14;
 
-		// explanatory Set
-
+		// explanatory Set.
 		explanatorySet = new Attribute[5];
-
-		// TO DO : avvalorare ciascune elemento di attributeSet con un oggetto della
-		// classe DiscreteAttribute che modella il corrispondente attributo (e.g.
-		// outlook, temperature,etc)
-		// nel seguito si fornisce l'esempio per outlook
 
 		String outLookValues[] = new String[3];
 		outLookValues[0] = "Overcast";
@@ -40,24 +33,24 @@ public class Data {
 
 		String temperatureValues[] = new String[3];
 		temperatureValues[0] = "Mild";
-		temperatureValues[0] = "Cool";
-		temperatureValues[0] = "Hot";
+		temperatureValues[1] = "Cool";
+		temperatureValues[2] = "Hot";
 		explanatorySet[1] = new DiscreteAttribute("Temperature", 1, temperatureValues);
 
 		String humidityValues[] = new String[2];
 		humidityValues[0] = "High";
 		humidityValues[1] = "Normal";
-		explanatorySet[2] = new DiscreteAttribute("Humidity", 1, humidityValues);
+		explanatorySet[2] = new DiscreteAttribute("Humidity", 2, humidityValues);
 
 		String windValues[] = new String[2];
 		windValues[0] = "Weak";
 		windValues[1] = "Strong";
-		explanatorySet[3] = new DiscreteAttribute("Wind", 1, windValues);
+		explanatorySet[3] = new DiscreteAttribute("Wind", 3, windValues);
 
 		String playValues[] = new String[2];
 		playValues[0] = "Yes";
 		playValues[1] = "No";
-		explanatorySet[4] = new DiscreteAttribute("PlayTennis", 1, playValues);
+		explanatorySet[4] = new DiscreteAttribute("PlayTennis", 4, playValues);
 	}
 
 	public int getNumberOfExamples() {
@@ -108,18 +101,18 @@ public class Data {
 
 	public Object computePrototype(ArraySet clusteredData, Attribute attribute) {
 
-		String out = computePrototype(clusteredData, (DiscreteAttribute) attribute);
+		Object out = computePrototype(clusteredData, (DiscreteAttribute) attribute);
 		return out;
 	}
 
 	private String computePrototype(ArraySet idList, DiscreteAttribute attribute) {
 		int max = 0;
 		String out = "";
-		for (int j = 0; j < explanatorySet.length; j++) {
-			int thisFreq = attribute.frequency(this, idList, attribute.getName());
+		for (int j = 0; j < attribute.getNumberOfDistinctValues(); j++) {
+			int thisFreq = attribute.frequency(this, idList, attribute.getValue(j));
 			if (max < thisFreq) {
 				max = thisFreq;
-				out = attribute.getName();
+				out = attribute.getValue(j);
 			}
 		}
 		return out;
@@ -165,7 +158,7 @@ public class Data {
 	private boolean compare(int i, int c) {
 
 		for (int j = 0; j < getNumberOfExplanatoryAttributes(); j++) {
-			if (!(data[c][j] == data[i][j]))
+			if (!(data[c][j].equals(data[i][j])))
 				return false;
 		}
 		return true;
