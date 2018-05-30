@@ -16,11 +16,11 @@ before_script:
   - chmod +x gradlew
   
 script:
-  - ./gradlew check && docker build -t gheo/kmeans ./build/docker/
+  - ./gradlew check && docker build -t $DOCKER_REPO ./build/docker/
 
 after_success:
   - if [ "$TRAVIS_BRANCH" == "master" ] && [ "$TRAVIS_TEST_RESULT" == 0 ]; then 
       docker login -u "$DOCKER_USERNAME" -p "$DOCKER_PASSWORD";
-      docker push gheo/kmeans;
+      docker push $DOCKER_REPOs;
     fi
   - ./gradlew jacocoTestReport coveralls
