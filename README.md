@@ -1,4 +1,4 @@
 # kmeans
 [![Build Status](https://travis-ci.org/GhCristea/kmeans.svg?branch=master)](https://travis-ci.org/GhCristea/kmeans)
 
-[![Coverage Status](https://coveralls.io/repos/github/GhCristea/kmeans/badge.svg?branch=master&service=github)](https://coveralls.io/github/GhCristea/kmeans?branch=master)
+[![Coverage Status](https://coveralls.io/repos/github/GhCristea/kmeans/badge.svg)](https://coveralls.io/github/GhCristea/kmeans)
