@@ -9,18 +9,12 @@ language: java
 jdk:
   - oraclejdk8
 
-services:
-  - docker
-
 before_script:
   - chmod +x gradlew
   
 script:
-  - ./gradlew check && docker build -t $DOCKER_REPO ./build/docker/
+  - ./gradlew check
 
 after_success:
-  - if [ "$TRAVIS_BRANCH" == "master" ] && [ "$TRAVIS_TEST_RESULT" == 0 ]; then 
-      docker login -u "$DOCKER_USERNAME" -p "$DOCKER_PASSWORD";
-      docker push $DOCKER_REPO;
     fi
   - ./gradlew jacocoTestReport coveralls
