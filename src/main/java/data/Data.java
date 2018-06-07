@@ -1,77 +1,218 @@
 package data;
 
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Random;
-import utility.ArraySet;
+import java.util.Set;
+import java.util.TreeSet;
+
 public class Data {
 
-	private Object data[][];
-	private int numberOfExamples;
-	private Attribute explanatorySet[];
-	private int distinctTuples;
+	private List<Example> data;
+	private List<Attribute> explanatorySet = new LinkedList<>();
+
+	class Example implements Comparable<Example> {
+
+		List<Object> example = new ArrayList<Object>();
+
+		void add(Object inputObject) {
+			example.add(inputObject);
+		}
+
+		Object get(int index) {
+			return example.get(index);
+		}
+
+		@Override
+		public int compareTo(Example objectToCompare) {
+			for (int i = 0; i < example.size(); i++) {
+				boolean equalsTillNow = example.get(i).equals(objectToCompare.get(i));
+				if (!equalsTillNow) {
+					return ((String) objectToCompare.get(i)).compareTo((String) example.get(i));
+				}
+			}
+			return 0;
+		}
+
+		@Override
+		public String toString() {
+			String listToString = "[";
+			for (Object indexExaple : example) {
+				listToString += indexExaple.toString() + ", ";
+			}
+			return listToString.substring(0, listToString.length() - 2) + "]";
+		}
+
+	}
 
 	public Data() {
 
-		// data.
-		data = new Object[][] { { "Sunny", "Hot", "High", "Weak", "No" }, { "Sunny", "Hot", "High", "Strong", "No" },
-				{ "Overcast", "Hot", "High", "Weak", "Yes" }, { "Rain", "Mild", "High", "Weak", "Yes" },
-				{ "Rain", "Cool", "Normal", "Weak", "Yes" }, { "Rain", "Cool", "Normal", "Strong", "No" },
-				{ "Overcast", "Cool", "Normal", "Strong", "Yes" }, { "Sunny", "Mild", "High", "Weak", "No" },
-				{ "Sunny", "Cool", "Normal", "Weak", "Yes" }, { "Rain", "Mild", "Normal", "Weak", "Yes" },
-				{ "Sunny", "Mild", "Normal", "Strong", "Yes" }, { "Overcast", "Mild", "High", "Strong", "Yes" },
-				{ "Overcast", "Hot", "Normal", "Weak", "Yes" }, { "Rain", "Mild", "High", "Strong", "No" } };
+		TreeSet<Example> tempData = new TreeSet<>();
+		Example ex0 = new Example();
+		ex0.add(new String("Sunny"));
+		ex0.add(new String("Hot"));
+		ex0.add(new String("High"));
+		ex0.add(new String("Weak"));
+		ex0.add(new String("No"));
 
-		// numberOfExamples.
-		numberOfExamples = 14;
-		distinctTuples = countDistinctTuples();
-		// explanatory Set.
-		explanatorySet = new Attribute[5];
+		Example ex1 = new Example();
+		ex1.add(new String("Sunny"));
+		ex1.add(new String("Hot"));
+		ex1.add(new String("High"));
+		ex1.add(new String("Strong"));
+		ex1.add(new String("No"));
 
-		String outLookValues[] = new String[3];
-		outLookValues[0] = "Overcast";
-		outLookValues[1] = "Rain";
-		outLookValues[2] = "Sunny";
-		explanatorySet[0] = new DiscreteAttribute("Outlook", 0, outLookValues);
+		Example ex2 = new Example();
+		ex2.add(new String("Overcast"));
+		ex2.add(new String("Hot"));
+		ex2.add(new String("High"));
+		ex2.add(new String("Weak"));
+		ex2.add(new String("Yes"));
 
-		String temperatureValues[] = new String[3];
-		temperatureValues[0] = "Mild";
-		temperatureValues[1] = "Cool";
-		temperatureValues[2] = "Hot";
-		explanatorySet[1] = new DiscreteAttribute("Temperature", 1, temperatureValues);
+		Example ex3 = new Example();
+		ex3.add(new String("Rain"));
+		ex3.add(new String("Mild"));
+		ex3.add(new String("High"));
+		ex3.add(new String("Weak"));
+		ex3.add(new String("Yes"));
 
-		String humidityValues[] = new String[2];
-		humidityValues[0] = "High";
-		humidityValues[1] = "Normal";
-		explanatorySet[2] = new DiscreteAttribute("Humidity", 2, humidityValues);
+		Example ex4 = new Example();
+		ex4.add(new String("Rain"));
+		ex4.add(new String("Cool"));
+		ex4.add(new String("Normal"));
+		ex4.add(new String("Weak"));
+		ex4.add(new String("Yes"));
 
-		String windValues[] = new String[2];
-		windValues[0] = "Weak";
-		windValues[1] = "Strong";
-		explanatorySet[3] = new DiscreteAttribute("Wind", 3, windValues);
+		Example ex5 = new Example();
+		ex5.add(new String("Rain"));
+		ex5.add(new String("Cool"));
+		ex5.add(new String("Normal"));
+		ex5.add(new String("Strong"));
+		ex5.add(new String("No"));
 
-		String playValues[] = new String[2];
-		playValues[0] = "Yes";
-		playValues[1] = "No";
-		explanatorySet[4] = new DiscreteAttribute("PlayTennis", 4, playValues);
+		Example ex6 = new Example();
+		ex6.add(new String("Overcast"));
+		ex6.add(new String("Cool"));
+		ex6.add(new String("Normal"));
+		ex6.add(new String("Strong"));
+		ex6.add(new String("Yes"));
+
+		Example ex7 = new Example();
+		ex7.add(new String("Sunny"));
+		ex7.add(new String("Mild"));
+		ex7.add(new String("High"));
+		ex7.add(new String("Weak"));
+		ex7.add(new String("No"));
+
+		Example ex8 = new Example();
+		ex8.add(new String("Sunny"));
+		ex8.add(new String("Cool"));
+		ex8.add(new String("Normal"));
+		ex8.add(new String("Weak"));
+		ex8.add(new String("Yes"));
+
+		Example ex9 = new Example();
+		ex9.add(new String("Rain"));
+		ex9.add(new String("Mild"));
+		ex9.add(new String("Normal"));
+		ex9.add(new String("Weak"));
+		ex9.add(new String("Yes"));
+
+		Example ex10 = new Example();
+		ex10.add(new String("Sunny"));
+		ex10.add(new String("Mild"));
+		ex10.add(new String("Normal"));
+		ex10.add(new String("Strong"));
+		ex10.add(new String("Yes"));
+
+		Example ex11 = new Example();
+		ex11.add(new String("Overcast"));
+		ex11.add(new String("Mild"));
+		ex11.add(new String("High"));
+		ex11.add(new String("Strong"));
+		ex11.add(new String("Yes"));
+
+		Example ex12 = new Example();
+		ex12.add(new String("Overcast"));
+		ex12.add(new String("Hot"));
+		ex12.add(new String("Normal"));
+		ex12.add(new String("Weak"));
+		ex12.add(new String("Yes"));
+
+		Example ex13 = new Example();
+		ex13.add(new String("Rain"));
+		ex13.add(new String("Mild"));
+		ex13.add(new String("High"));
+		ex13.add(new String("Strong"));
+		ex13.add(new String("No"));
+
+		tempData.add(ex0);
+		tempData.add(ex1);
+		tempData.add(ex2);
+		tempData.add(ex3);
+		tempData.add(ex4);
+		tempData.add(ex5);
+		tempData.add(ex6);
+		tempData.add(ex7);
+		tempData.add(ex8);
+		tempData.add(ex9);
+		tempData.add(ex10);
+		tempData.add(ex11);
+		tempData.add(ex12);
+		tempData.add(ex13);
+		data = new ArrayList<Example>(tempData);
+
+		TreeSet<String> outLookValues = new TreeSet<>();
+		outLookValues.add("Overcast");
+		outLookValues.add("Rain");
+		outLookValues.add("Sunny");
+		Attribute discreteAtt = new DiscreteAttribute("Outlook", 0, outLookValues);
+		explanatorySet.add(discreteAtt);
+
+		TreeSet<String> temperatureValues = new TreeSet<>();
+		temperatureValues.add("Mild");
+		temperatureValues.add("Cool");
+		temperatureValues.add("Hot");
+		discreteAtt = new DiscreteAttribute("Temperature", 1, temperatureValues);
+		explanatorySet.add(discreteAtt);
+
+		TreeSet<String> humidityValues = new TreeSet<>();
+		humidityValues.add("High");
+		humidityValues.add("Normal");
+		discreteAtt = new DiscreteAttribute("Humidity", 2, humidityValues);
+		explanatorySet.add(discreteAtt);
+
+		TreeSet<String> windValues = new TreeSet<>();
+		windValues.add("Weak");
+		windValues.add("Strong");
+		discreteAtt = new DiscreteAttribute("Wind", 3, windValues);
+		explanatorySet.add(discreteAtt);
+
+		TreeSet<String> playValues = new TreeSet<>();
+		playValues.add("Yes");
+		playValues.add("No");
+		discreteAtt = new DiscreteAttribute("PlayTennis", 4, playValues);
+		explanatorySet.add(discreteAtt);
 	}
 
 	public int getNumberOfExamples() {
-		return numberOfExamples;
+		return data.size();
 	}
 
 	public int getNumberOfExplanatoryAttributes() {
-		return explanatorySet.length;
+		return explanatorySet.size();
 	}
 
 	public Object getAttributeValue(int exampleIndex, int attributeIndex) {
-
-		return data[exampleIndex][attributeIndex];
+		return data.get(attributeIndex).get(exampleIndex);
 	}
 
 	public Attribute getAttribute(int index) {
-		return explanatorySet[index];
+		return explanatorySet.get(index);
 	}
 
-	public Attribute[] getAttributeSchema() {
+	public List<Attribute> getAttributeSchema() {
 		return explanatorySet;
 	}
 
@@ -79,55 +220,48 @@ public class Data {
 	public String toString() {
 		String out = "";
 		int i = 0;
-		for (; i < explanatorySet.length - 1; i++) {
-			out += explanatorySet[i].getName() + ",";
+		for (; i < explanatorySet.size() - 1; i++) {
+			out += explanatorySet.get(i).getName() + ",";
 		}
-		out += explanatorySet[i].getName() + "\n";
+		out += explanatorySet.get(i).getName() + "\n";
 
-		for (i = 0; i < numberOfExamples; i++) {
+		for (i = 0; i < data.size(); i++) {
 			out += (i + 1) + ":";
-			for (int j = 0; j < explanatorySet.length; j++) {
-				out += data[i][j] + ",";
+			for (int j = 0; j < explanatorySet.size(); j++) {
+				out += data.get(i).get(j) + ",";
 			}
 			out += "\n";
 		}
 		return out;
 	}
-/*
-	public static void main(String args[]) {
-		Data trainingSet = new Data();
-		System.out.println(trainingSet);
 
-	}
-*/
-	public Object computePrototype(ArraySet clusteredData, Attribute attribute) {
+	/*
+	 * public static void main(String args[]) { Data trainingSet = new Data();
+	 * System.out.println(trainingSet);
+	 * 
+	 * }
+	 */
+	public Object computePrototype(Set<Integer> clusteredData, Attribute attribute) {
 
 		Object out = computePrototype(clusteredData, (DiscreteAttribute) attribute);
 		return out;
 	}
 
-	private String computePrototype(ArraySet idList, DiscreteAttribute attribute) {
-		int max = 0;
+	private String computePrototype(Set<Integer> idList, DiscreteAttribute attribute) {
 		String out = "";
-		for (int j = 0; j < attribute.getNumberOfDistinctValues(); j++) {
-			int thisFreq = attribute.frequency(this, idList, attribute.getValue(j));
-			if (max < thisFreq) {
-				max = thisFreq;
-				out = attribute.getValue(j);
-			}
-		}
+		// TODO
 		return out;
 	}
 
 	public Tuple getItemSet(int index) {
-		Tuple tuple = new Tuple(explanatorySet.length);
-		for (int i = 0; i < explanatorySet.length; i++) {
-			tuple.add(new DiscreteItem((DiscreteAttribute) explanatorySet[i], (String) data[index][i]), i);
+		Tuple tuple = new Tuple(explanatorySet.size());
+		for (int i = 0; i < explanatorySet.size(); i++) {
+			tuple.add(new DiscreteItem((DiscreteAttribute) explanatorySet.get(i), (String) data.get(index).get(i)), i);
 		}
 		return tuple;
 	}
 
-	public int[] sampling(int k) throws OutOfRangeSampleSize{
+	public int[] sampling(int k) throws OutOfRangeSampleSize {
 		int[] centroidIndexes = new int[k];
 		// scegli k centroid differenti in data
 		Random rand = new Random();
@@ -159,21 +293,10 @@ public class Data {
 	private boolean compare(int i, int c) {
 
 		for (int j = 0; j < getNumberOfExplanatoryAttributes(); j++) {
-			if (!(data[c][j].equals(data[i][j])))
+			if (!(data.get(c).get(j).equals(data.get(i).get(j))))
 				return false;
 		}
 		return true;
 	}
-	
-	private int countDistinctTuples() {
-		int localDistinctTuples = 0;
-		for (int i = 0; i < getNumberOfExamples() - 1; i++) {
-			for(int j = i+1;j < getNumberOfExamples(); j++ ) {
-				if(!compare(i, j)) {
-					localDistinctTuples++;
-				}
-			}
-		}
-		return localDistinctTuples;
-	}
+
 }
