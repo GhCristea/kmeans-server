@@ -10,7 +10,7 @@ public class ContinuousAttribute extends Attribute {
 		this.max = max;
 	}
 
-	double getScaledValue(double v) {
+	double getScaledValue(Double v) {
 		return (double) (v - min) / (max - min);
 	}
 }
