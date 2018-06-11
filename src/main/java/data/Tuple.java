@@ -3,42 +3,42 @@ package data;
 import java.util.Set;
 
 public class Tuple {
-	Item [] tuple;
-	
+	Item[] tuple;
+
 	public Tuple(int size) {
 		tuple = new Item[size];
 	}
-	
+
 	public int getLength() {
 		return tuple.length;
 	}
-	
+
 	public Item get(int i) {
 		return tuple[i];
 	}
-	
+
 	public void add(Item c, int i) {
 		tuple[i] = c;
 	}
-	
+
 	public double getDistance(Tuple obj) {
-		double out = .0;
-		for (int i = 0; i<obj.getLength(); i++) {
-			out += tuple[i].distance(obj.get(i));
+		double distance = 0.0;
+		for (int i = 0; i < obj.getLength(); i++) {
+			distance += tuple[i].distance(obj.get(i));
 		}
-		return out;
+		return distance;
 	}
-	
+
 	public double avgDistance(Data data, Set<Integer> clusteredData) {
-		double out = 0.0, sum = 0.0;
-		
-		for (int i = 0; i < clusteredData.size(); i++) {
-			sum+=getDistance(data.getItemSet(i));
+		double avverage = 0.0, total = 0.0;
+
+		for (Integer integer : clusteredData) {
+			total += getDistance(data.getItemSet(integer));
 		}
-		
-		out = sum / clusteredData.size();
-		
-		return out;
+
+		avverage = total / clusteredData.size();
+
+		return avverage;
 	}
-	
+
 }

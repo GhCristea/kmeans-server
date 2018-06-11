@@ -25,12 +25,10 @@ public class ContinuousItem extends Item {
 	 */
 	@Override
 	public double distance(Object intputItem) {
-		// double thisValue =
-		//System.out.println(this.getValue());
-		 System.out.println(((ContinuousAttribute)getAttribute()).getScaledValue((Double)this.getValue()));
-		// double inputValue
-		// =((ContinuousAttribute)((ContinuousItem)intputItem).getAttribute()).getScaledValue((double)((Item)intputItem).getValue());
-		return 0;// Math.abs(inputValue-thisValue);
+		double thisValue = ((ContinuousAttribute) getAttribute()).getScaledValue((Double) getValue());
+		double inputValue = ((ContinuousAttribute) ((ContinuousItem) intputItem).getAttribute())
+				.getScaledValue((Double) ((Item) intputItem).getValue());
+		return Math.abs(inputValue - thisValue);
 	}
 
 }

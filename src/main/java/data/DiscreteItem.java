@@ -8,7 +8,7 @@ public class DiscreteItem extends Item {
 
 	@Override
 	public double distance(Object a) {
-		if (getValue().equals(a)) {
+		if (getValue().equals(((Item)a).getValue())) {
 			return 0;
 		}
 		return 1;

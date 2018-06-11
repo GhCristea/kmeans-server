@@ -29,7 +29,6 @@ public class Cluster {
 	void computeCentroid(Data data) {
 		for (int i = 0; i < centroid.getLength(); i++) {
 			centroid.get(i).update(data, clusteredData);
-
 		}
 	}
 
@@ -50,26 +49,26 @@ public class Cluster {
 	}
 
 	public String toString() {
-		String str = "Centroid=(";
+		String string = "Centroid=(";
 		for (int i = 0; i < centroid.getLength(); i++)
-			str += centroid.get(i);
-		str += ")";
-		return str;
+			string += centroid.get(i) + " ";
+		string += ")";
+		return string;
 	}
 
 	public String toString(Data data) {
-		String str = "Centroid=(";
+		String string = "Centroid=(";
 		for (int i = 0; i < centroid.getLength(); i++)
-			str += centroid.get(i) + " ";
-		str += ")\nExamples:\n";
+			string += centroid.get(i) + " ";
+		string += ")\nExamples:\n";
 	
 		for (Integer integer : clusteredData) {		
-			str += "[";
+			string += "[";
 			for (int j = 0; j < data.getNumberOfExplanatoryAttributes(); j++)
-				str += data.getAttributeValue(integer, j) + " ";
-			str += "] dist=" + getCentroid().getDistance(data.getItemSet(integer)) + "\n";
+				string += data.getAttributeValue(integer, j) + ", ";
+			string += "] dist=" + getCentroid().getDistance(data.getItemSet(integer)) + "\n";
 		}
-		str += "\nAvgDistance=" + getCentroid().avgDistance(data, clusteredData);
-		return str;
+		string += "\nAvgDistance=" + getCentroid().avgDistance(data, clusteredData);
+		return string;
 	}
 }

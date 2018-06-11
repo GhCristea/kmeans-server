@@ -17,14 +17,15 @@ public class DiscreteAttribute extends Attribute implements Iterable<String>{
 	}
 
 
-	public int frequency(Data data, Set<Integer> idList, String v) {
-		int out = 0;
-		for (int i = 0; i < idList.toArray().length; i++) {
-			if (data.getAttributeValue((int) idList.toArray()[i], getIndex()).equals(v)) {
-				out++;
+	public int frequency(Data data, Set<Integer> idList, String value) {
+		int frequency = 0;
+		for (Integer integer : idList) 
+		{
+			if (data.getAttributeValue(integer, getIndex()).equals(value)) {
+				frequency++;
 			}
 		}
-		return out;
+		return frequency;
 	}
 
 	@Override
