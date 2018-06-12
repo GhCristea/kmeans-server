@@ -22,6 +22,16 @@ public class Data {
 	private List<Example> data;
 	private List<Attribute> explanatorySet = new LinkedList<>();
 
+	/**
+	 * Class constructor.
+	 * 
+	 * @param tableName
+	 *            name of database table.
+	 * @throws DatabaseConnectionException
+	 * @throws SQLException
+	 * @throws EmptySetException
+	 * @throws NoValueException
+	 */
 	public Data(String tableName)
 			throws DatabaseConnectionException, SQLException, EmptySetException, NoValueException {
 
@@ -52,52 +62,62 @@ public class Data {
 
 	}
 
+	/**
+	 * 
+	 * @return size of the attribute data.
+	 */
 	public int getNumberOfExamples() {
 		return data.size();
 	}
 
+	/**
+	 * @return size of the atribute explanatorySet.
+	 */
 	public int getNumberOfExplanatoryAttributes() {
 		return explanatorySet.size();
 	}
 
+	/**
+	 * Gets a value from data.
+	 * 
+	 * @param exampleIndex
+	 *            index for the value in data.
+	 * @param attributeIndex
+	 *            index for the attribute in data.
+	 * @return indexed value at exampleIndex for the attribute inexed at
+	 *         attributeIndex in data
+	 */
 	public Object getAttributeValue(int exampleIndex, int attributeIndex) {
 		return data.get(exampleIndex).get(attributeIndex);
 	}
 
+	/**
+	 * Gets an attributute from explanatorySet.
+	 * 
+	 * @param index
+	 *            index of the attribute.
+	 * @return the attribute indexed at index in explanatorySet.
+	 */
 	public Attribute getAttribute(int index) {
 		return explanatorySet.get(index);
 	}
 
+	/**.
+	 * @return the explanatory set
+	 */
 	public List<Attribute> getAttributeSchema() {
 		return explanatorySet;
 	}
 
-	@Override
-	public String toString() {
-		String string = "";
-		int i = 0;
-		for (; i < explanatorySet.size() - 1; ++i) {
-			string += explanatorySet.get(i).getName() + ",";
-		}
-		string += explanatorySet.get(i).getName() + "\n";
-
-		for (i = 0; i < data.size(); i++) {
-			string += (i + 1) + ":";
-			for (int j = 0; j < explanatorySet.size(); j++) {
-				string += data.get(i).get(j).toString() + ",";
-			}
-			string += "\n";
-		}
-		return string;
-	}
-
-	/*
-	 * public static void main(String args[]) { Data trainingSet = new Data();
-	 * System.out.println(trainingSet);
+	/**
+	 * Computes prototype for continuous attribute or discrete attribute
 	 * 
-	 * }
+	 * @param clusteredData
+	 *            indexes of attributes
+	 * @param attribute attribute
+	 * @return calls {@link data.Data#computePrototype(Set, ContinuousAttribute)} or
+	 *         {@link data.Data#computePrototype(Set, DiscreteAttribute)}
 	 */
-
 	public Object computePrototype(Set<Integer> clusteredData, Attribute attribute) {
 
 		if (attribute instanceof ContinuousAttribute)
@@ -113,7 +133,7 @@ public class Data {
 		}
 		return count / idList.size();
 	}
-	
+
 	String computePrototype(Set<Integer> idList, DiscreteAttribute attribute) {
 		String max = "";
 		int max_freq = 0;
@@ -139,16 +159,15 @@ public class Data {
 		return max;
 	}
 
-
 	public Tuple getItemSet(int index) {
 		Tuple tuple = new Tuple(explanatorySet.size());
 		for (Attribute attribute : explanatorySet) {
 			if (attribute instanceof DiscreteAttribute) {
-				tuple.add(new DiscreteItem((DiscreteAttribute) attribute, (String) data.get(index).get(attribute.getIndex())),
-						attribute.getIndex());
+				tuple.add(new DiscreteItem((DiscreteAttribute) attribute,
+						(String) data.get(index).get(attribute.getIndex())), attribute.getIndex());
 			} else {
-				tuple.add(new ContinuousItem((ContinuousAttribute) attribute, (Double) data.get(index).get(attribute.getIndex())),
-						attribute.getIndex());
+				tuple.add(new ContinuousItem((ContinuousAttribute) attribute,
+						(Double) data.get(index).get(attribute.getIndex())), attribute.getIndex());
 			}
 		}
 		return tuple;

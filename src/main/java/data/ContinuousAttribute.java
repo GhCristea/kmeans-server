@@ -1,16 +1,42 @@
 package data;
 
-public class ContinuousAttribute extends Attribute {
-	private double min;
-	private double max;
+/**
+ * Specialized class for continuous attribute.
+ * 
+ * @author Cristea Gheorghita
+ *
+ */
+final public class ContinuousAttribute extends Attribute {
 
-	public ContinuousAttribute(String name, int index, double min, double max) {
+	private double minRange;
+	private double maxRange;
+
+	/**
+	 * Class constructor.
+	 * 
+	 * @param name
+	 *            attribute's name
+	 * @param index
+	 *            attribute's index
+	 * @param minimum
+	 *            minimum range
+	 * @param maximum
+	 *            maximum range
+	 */
+	public ContinuousAttribute(final String name, final int index, final double minimum, final double maximum) {
 		super(name, index);
-		this.min = min;
-		this.max = max;
+		this.minRange = minimum;
+		this.maxRange = maximum;
 	}
 
-	double getScaledValue(Double value) {
-		return (double) (value - min) / (max - min);
+	/**
+	 * Calculate the scalled value.
+	 * 
+	 * @param value
+	 *            to scale
+	 * @return scalled value
+	 */
+	double getScaledValue(final Double value) {
+		return (double) (value - minRange) / (maxRange - minRange);
 	}
 }

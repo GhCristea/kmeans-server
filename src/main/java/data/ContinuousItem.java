@@ -4,16 +4,18 @@
 package data;
 
 /**
+ * Class for modelling pairs of (Attribute, Value).
  * @author Cristea Gheorghita
  *
  */
 public class ContinuousItem extends Item {
 
 	/**
-	 * @param attribute
-	 * @param value
+	 * Class constructor.
+	 * @param attribute attribute
+	 * @param value attribute's value.
 	 */
-	public ContinuousItem(Attribute attribute, Object value) {
+	public ContinuousItem(final Attribute attribute, final Object value) {
 		super(attribute, value);
 
 	}
