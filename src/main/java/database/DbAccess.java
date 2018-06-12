@@ -8,27 +8,26 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 /**
+ * Class to initiate the connection with database.
  * @author Cristea Gheorghita
  *
  */
 public class DbAccess {
 
-	final String DRIVER_CLASS_NAME = "org.gjt.mm.mysql.Driver";
-	final String DBMS = "jdbc:mysql";
-	final String SERVER = "localhost";
-	final String DATABASE = "MApDB";
-	final String PORT = "3306";
-	final String USER_ID = "MapUser";
-	final String PASSWORD = "map";
-	Connection conn;
+	private final String DRIVER_CLASS_NAME = "org.gjt.mm.mysql.Driver";
+	private final String DBMS = "jdbc:mysql";
+	private final String SERVER = "localhost";
+	private final String DATABASE = "MApDB";
+	private final String PORT = "3306";
+	private final String USER_ID = "MapUser";
+	private final String PASSWORD = "map";
+	private Connection connection;
 
-	/**
-	 * 
-	 */
-	public DbAccess() {
-		// TODO Auto-generated constructor stub
-	}
-
+	
+/**
+ * Initiate the connection with database.
+ * @throws DatabaseConnectionException
+ */
 	public void initConnection() throws DatabaseConnectionException {
 		try {
 			Class.forName(DRIVER_CLASS_NAME);
@@ -37,19 +36,27 @@ public class DbAccess {
 		}
 
 		try {
-			conn = DriverManager.getConnection(DBMS + "://" + SERVER + ":" + PORT + "/" + DATABASE, USER_ID, PASSWORD);
+			connection = DriverManager.getConnection(DBMS + "://" + SERVER + ":" + PORT + "/" + DATABASE, USER_ID, PASSWORD);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
 
+	/**
+	 * Getter for connection.
+	 * @return connection.
+	 */
 	public Connection getConnection() {
-		return conn;
+		return connection;
 	}
 
+	/**
+	 * Close connection.
+	 * @throws SQLException
+	 */
 	void closeConnection() throws SQLException {
-		conn.close();
+		connection.close();
 	}
 
 }

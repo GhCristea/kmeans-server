@@ -15,15 +15,31 @@ import java.util.TreeSet;
 
 import database.TableSchema.Column;
 
+/**
+ * Class to parse data from the database.
+ * @author Cristea Gheorghita
+ *
+ */
 public class TableData {
 
 	DbAccess database;
 
-	public TableData(DbAccess dbIn) {
+	/**
+	 * Class constructor.
+	 * @param dbIn input database.
+	 */
+	public TableData(final DbAccess dbIn) {
 		this.database = dbIn;
 	}
 
-	public List<Example> getDistinctTransazioni(String tableName) throws SQLException, EmptySetException {
+	/**
+	 * Gets the list of distincts {@link Example}s.
+	 * @param tableName name of the datase's table
+	 * @return the list of distincts {@link Example}s.
+	 * @throws SQLException
+	 * @throws EmptySetException
+	 */
+	public List<Example> getDistinctTransactions(final String tableName) throws SQLException, EmptySetException {
 		List<Example> distinctTransaction = new LinkedList<Example>();
 		TableSchema schema = new TableSchema(database, tableName);
 		Statement statment = database.getConnection().createStatement();

@@ -46,7 +46,7 @@ public class Data {
 		database.initConnection();
 
 		TableData tableData = new TableData(database);
-		data = tableData.getDistinctTransazioni(tableName);
+		data = tableData.getDistinctTransactions(tableName);
 
 		TableSchema tableSchema = new TableSchema(database, tableName);
 

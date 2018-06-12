@@ -15,9 +15,9 @@ package data;
 	 * Class constructor.
 	 * 
 	 * @param name
-	 *            attribute's name
+	 *            {@link ContinuousAttribute}'s name
 	 * @param index
-	 *            attribute's index
+	 *            {@link ContinuousAttribute}'s index
 	 * @param minimum
 	 *            minimum range
 	 * @param maximum

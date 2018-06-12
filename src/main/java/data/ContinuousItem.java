@@ -4,7 +4,7 @@
 package data;
 
 /**
- * Class for modelling pairs of (@link ContinuousAttribute, value).
+ * Class for modelling pairs of ({@link ContinuousAttribute}, value).
  * extends {@link Item}.
  * @author Cristea Gheorghita
  *
@@ -13,8 +13,8 @@ public class ContinuousItem extends Item {
 
 	/**
 	 * Class constructor.
-	 * @param attribute attribute
-	 * @param value attribute's value.
+	 * @param attribute {@link Item}'s {@link Attribute}
+	 * @param value {@link Item}'s's value.
 	 */
 	public ContinuousItem(final Attribute attribute, final Object value) {
 		super(attribute, value);
@@ -24,7 +24,7 @@ public class ContinuousItem extends Item {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see data.Item#distance(java.lang.Object)
+	 * @see data.Item#distance(finaljava.lang.Object)
 	 */
 	@Override
 	public double distance(final Object intputItem) {

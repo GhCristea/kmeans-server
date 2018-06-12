@@ -16,9 +16,9 @@ public abstract class Attribute {
 	 * Class constructor.
 	 * 
 	 * @param setName
-	 *            attribute's name
+	 *            {@link Attribute}'s name
 	 * @param setIndex
-	 *            attribute's index
+	 *            {@link Attribute}'s index
 	 */
 	public Attribute(final String setName, final int setIndex) {
 		this.index = setIndex;
@@ -28,7 +28,7 @@ public abstract class Attribute {
 	/**
 	 * Index getter.
 	 * 
-	 * @return attribute's index
+	 * @return {@link Attribute}'s index
 	 */
 	public int getIndex() {
 		return index;
@@ -37,14 +37,14 @@ public abstract class Attribute {
 	/**
 	 * Name getter.
 	 * 
-	 * @return attribute's name
+	 * @return {@link Attribute}'s name
 	 */
 	public String getName() {
 		return name;
 	}
 
 	/*
-	* Returns attribute's name.
+	* Returns {@link Attribute}'s name.
 	 */
 	@Override
 	public String toString() {
