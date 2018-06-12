@@ -17,6 +17,11 @@ import database.QUERY_TYPE;
 import database.TableData;
 import database.TableSchema;
 
+/**
+ * Class Data who's storing data from the database.
+ * @author Cristea Gheorghita
+ *
+ */
 public class Data {
 
 	private List<Example> data;
@@ -32,7 +37,7 @@ public class Data {
 	 * @throws EmptySetException
 	 * @throws NoValueException
 	 */
-	public Data(String tableName)
+	public Data(final String tableName)
 			throws DatabaseConnectionException, SQLException, EmptySetException, NoValueException {
 
 		DbAccess database = new DbAccess();
@@ -64,14 +69,14 @@ public class Data {
 
 	/**
 	 * 
-	 * @return size of the attribute data.
+	 * @return number of examples.
 	 */
 	public int getNumberOfExamples() {
 		return data.size();
 	}
 
 	/**
-	 * @return size of the atribute explanatorySet.
+	 * @return number of collumns of database.
 	 */
 	public int getNumberOfExplanatoryAttributes() {
 		return explanatorySet.size();
@@ -87,22 +92,23 @@ public class Data {
 	 * @return indexed value at exampleIndex for the attribute inexed at
 	 *         attributeIndex in data
 	 */
-	public Object getAttributeValue(int exampleIndex, int attributeIndex) {
+	public Object getAttributeValue(final int exampleIndex, final int attributeIndex) {
 		return data.get(exampleIndex).get(attributeIndex);
 	}
 
 	/**
-	 * Gets an attributute from explanatorySet.
+	 * Gets an attribute.
 	 * 
 	 * @param index
 	 *            index of the attribute.
 	 * @return the attribute indexed at index in explanatorySet.
 	 */
-	public Attribute getAttribute(int index) {
+	public Attribute getAttribute(final int index) {
 		return explanatorySet.get(index);
 	}
 
-	/**.
+	/**
+	 * Getter for database's schema.
 	 * @return the explanatory set
 	 */
 	public List<Attribute> getAttributeSchema() {
@@ -110,7 +116,7 @@ public class Data {
 	}
 
 	/**
-	 * Computes prototype for continuous attribute or discrete attribute
+	 * Computes prototype for continuous attribute or discrete attribute.
 	 * 
 	 * @param clusteredData
 	 *            indexes of attributes
@@ -118,7 +124,7 @@ public class Data {
 	 * @return calls {@link data.Data#computePrototype(Set, ContinuousAttribute)} or
 	 *         {@link data.Data#computePrototype(Set, DiscreteAttribute)}
 	 */
-	public Object computePrototype(Set<Integer> clusteredData, Attribute attribute) {
+	public Object computePrototype(final Set<Integer> clusteredData, final Attribute attribute) {
 
 		if (attribute instanceof ContinuousAttribute)
 			return computePrototype(clusteredData, (ContinuousAttribute) attribute);
@@ -126,42 +132,59 @@ public class Data {
 
 	}
 
-	Double computePrototype(Set<Integer> idList, ContinuousAttribute attribute) {
+	/**
+	 * Compute's a prototype for a continuous attribute.
+	 * @param idList list of attribute indexes
+	 * @param attribute continuous attribute
+	 * @return computed value (continuous
+	 */
+	Double computePrototype(final Set<Integer> idList, final ContinuousAttribute attribute) {
 		Double count = 0.0;
-		for (Integer index : idList) {
+		for (final Integer index : idList) {
 			count += (Double) data.get(index).get(attribute.getIndex());
 		}
 		return count / idList.size();
 	}
 
-	String computePrototype(Set<Integer> idList, DiscreteAttribute attribute) {
-		String max = "";
-		int max_freq = 0;
+	/**
+	 * Compute prototype for discrete attribute.
+	 * @param idList list with attribute's index.
+	 * @param attribute discrete attribute
+	 * @return computed value
+	 */
+	String computePrototype(final Set<Integer> idList, final DiscreteAttribute attribute) {
+		String maxOccorence = "";
+		int freqOccorence = 0;
 		ArrayList<String> controlled = new ArrayList<String>();
-		for (Integer index : idList) {
-			String to_control = (String) data.get(index).get(attribute.getIndex());
+		for (final Integer index : idList) {
+			final String stringToControl = (String) data.get(index).get(attribute.getIndex());
 			boolean checked = false;
-			for (String s : controlled) {
-				if (s.equals(to_control)) {
+			for (final String s : controlled) {
+				if (s.equals(stringToControl)) {
 					checked = true;
 					break;
 				}
 			}
 			if (!checked) {
-				controlled.add(to_control);
-				int freq = attribute.frequency(this, idList, to_control);
-				if (max_freq < freq) {
-					max = to_control;
-					max_freq = freq;
+				controlled.add(stringToControl);
+				final int currentFrequency = attribute.frequency(this, idList, stringToControl);
+				if (freqOccorence < currentFrequency) {
+					maxOccorence = stringToControl;
+					freqOccorence = currentFrequency;
 				}
 			}
 		}
-		return max;
+		return maxOccorence;
 	}
 
-	public Tuple getItemSet(int index) {
+	/**
+	 * Gets the set of items - pairs of pairs of ({@link data.Attribute} - value) indexed at index
+	 * @param index index for values
+	 * @return the set of items with values indexed at index
+	 */
+	public Tuple getItemSet(final int index) {
 		Tuple tuple = new Tuple(explanatorySet.size());
-		for (Attribute attribute : explanatorySet) {
+		for (final Attribute attribute : explanatorySet) {
 			if (attribute instanceof DiscreteAttribute) {
 				tuple.add(new DiscreteItem((DiscreteAttribute) attribute,
 						(String) data.get(index).get(attribute.getIndex())), attribute.getIndex());
@@ -173,36 +196,48 @@ public class Data {
 		return tuple;
 	}
 
-	public int[] sampling(int k) throws OutOfRangeSampleSize {
-		int[] centroidIndexes = new int[k];
+	/**
+	 * Generates a set of clusters.
+	 * @param numberOfClusters number of clusters to generate.
+	 * @return set of the clusters generated
+	 * @throws OutOfRangeSampleSize
+	 */
+	public int[] sampling(final int numberOfClusters) throws OutOfRangeSampleSize {
+		int[] centroidIndexes = new int[numberOfClusters];
 		// scegli k centroid differenti in data
-		Random rand = new Random();
-		rand.setSeed(System.currentTimeMillis());
+		final Random rand = new Random(System.currentTimeMillis());
+		//rand.setSeed(System.currentTimeMillis());
 
-		for (int i = 0; i < k; i++) {
+		for (int i = 0; i < numberOfClusters; i++) {
 			boolean found = false;
-			int c;
+			int randomIndex;
 
 			do {
 				found = false;
-				c = rand.nextInt(getNumberOfExamples());
+				randomIndex = rand.nextInt(getNumberOfExamples());
 				// verifica se il nuovo centroide non esiste gia in centroidIndexes
 
 				for (int j = 0; j < i; j++) {
-					if (compare(centroidIndexes[j], c)) {
+					if (compare(centroidIndexes[j], randomIndex)) {
 						found = true;
 						break;
 					}
 				}
 
 			} while (found);
-			centroidIndexes[i] = c;
+			centroidIndexes[i] = randomIndex;
 		}
 
 		return centroidIndexes;
 	}
 
-	private boolean compare(int row1, int row2) {
+	/**
+	 * Compare two rows of the table.
+	 * @param row1 
+	 * @param row2
+	 * @return true if the two rows are equal, false otherwise
+	 */
+	private boolean compare(final int row1, final int row2) {
 
 		for (int i = 0; i < getNumberOfExplanatoryAttributes(); i++) {
 			if (!(data.get(row1).get(i).equals(data.get(row2).get(i))))

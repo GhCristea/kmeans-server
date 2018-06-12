@@ -6,7 +6,7 @@ package data;
  * @author Cristea Gheorghita
  *
  */
-final public class ContinuousAttribute extends Attribute {
+ public class ContinuousAttribute extends Attribute {
 
 	private double minRange;
 	private double maxRange;

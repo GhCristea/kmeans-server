@@ -26,9 +26,9 @@ public class ContinuousItem extends Item {
 	 * @see data.Item#distance(java.lang.Object)
 	 */
 	@Override
-	public double distance(Object intputItem) {
-		double thisValue = ((ContinuousAttribute) getAttribute()).getScaledValue((Double) getValue());
-		double inputValue = ((ContinuousAttribute) ((ContinuousItem) intputItem).getAttribute())
+	public double distance(final Object intputItem) {
+		final double thisValue = ((ContinuousAttribute) getAttribute()).getScaledValue((Double) getValue());
+		final double inputValue = ((ContinuousAttribute) ((ContinuousItem) intputItem).getAttribute())
 				.getScaledValue((Double) ((Item) intputItem).getValue());
 		return Math.abs(inputValue - thisValue);
 	}
