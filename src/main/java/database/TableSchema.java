@@ -8,6 +8,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import data.Attribute;
+
 /**
  * Class rappresenting the schema of database's table.
  * 
@@ -15,6 +17,7 @@ import java.util.List;
  *
  */
 public class TableSchema {
+	
 	DbAccess database;
 
 	/**
@@ -99,10 +102,19 @@ public class TableSchema {
 
 	}
 
+	/**
+	 * Gets the number of {@link Attribute}.
+	 * @return size of {@link Attribute}'s schema.
+	 */
 	public int getNumberOfAttributes() {
 		return tableSchema.size();
 	}
 
+	/**
+	 * Returns a {@link Column} indexed at index.
+	 * @param index index of {@link Column}
+	 * @return
+	 */
 	public Column getColumn(int index) {
 		return tableSchema.get(index);
 	}

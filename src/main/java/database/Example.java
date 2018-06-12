@@ -2,6 +2,7 @@ package database;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * Class reppresenting a row of values.
@@ -29,7 +30,10 @@ public class Example implements Comparable<Example> {
 	public Object get(final int index) {
 		return example.get(index);
 	}
-
+	
+	/**
+	 * implements {@link Comparable#compareTo(Object)}.
+	 */
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public int compareTo(final Example example) {
 
