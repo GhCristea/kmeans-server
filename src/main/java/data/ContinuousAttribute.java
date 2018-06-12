@@ -2,7 +2,7 @@ package data;
 
 /**
  * Specialized class for continuous attribute.
- * 
+ * extends {@link Attribute}.
  * @author Cristea Gheorghita
  *
  */

@@ -1,5 +1,11 @@
 package data;
 
+/**
+ * Class for modelling the pairs ({@link DiscreteAttribute}, value).
+ * extends {@link Item}.
+ * @author Cristea Gheorghita
+ *
+ */
 public class DiscreteItem extends Item {
 
 	public DiscreteItem(DiscreteAttribute attribute, String value) {

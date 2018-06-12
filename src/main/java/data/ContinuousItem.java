@@ -4,7 +4,8 @@
 package data;
 
 /**
- * Class for modelling pairs of (Attribute, Value).
+ * Class for modelling pairs of (@link ContinuousAttribute, value).
+ * extends {@link Item}.
  * @author Cristea Gheorghita
  *
  */

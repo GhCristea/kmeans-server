@@ -5,6 +5,8 @@ import java.util.TreeSet;
 
 /**
  * Class for modelling a discrete attribute.
+ * extends {@link Attribute}.
+ * implements {@link Iterable<String>}.
  * @author Cristea Gheorghita
  *
  */
@@ -50,6 +52,10 @@ public class DiscreteAttribute extends Attribute implements Iterable<String>{
 		return frequency;
 	}
 
+	/**
+	 * (no-javadoc)
+	 * @see {@link java.lang.Iterable<java.lang.String>.iterator}
+	 */
 	@Override
 	public Iterator<String> iterator() {
 		return values.iterator();
