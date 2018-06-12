@@ -6,7 +6,7 @@ package data;
  * @author Cristea Gheorghita
  *
  */
-public class DiscreteItem extends Item {
+public final class DiscreteItem extends Item {
 
 	public DiscreteItem(DiscreteAttribute attribute, String value) {
 		super(attribute, value);

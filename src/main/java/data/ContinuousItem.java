@@ -9,7 +9,7 @@ package data;
  * @author Cristea Gheorghita
  *
  */
-public class ContinuousItem extends Item {
+public final class ContinuousItem extends Item {
 
 	/**
 	 * Class constructor.
