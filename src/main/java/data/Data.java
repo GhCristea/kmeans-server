@@ -19,6 +19,7 @@ import database.TableSchema;
 
 /**
  * Class Data who's storing data from the database.
+ * 
  * @author Cristea Gheorghita
  *
  */
@@ -32,6 +33,7 @@ public class Data {
 	 * 
 	 * @param tableName
 	 *            name of database table.
+	 * 
 	 * @throws DatabaseConnectionException
 	 * @throws SQLException
 	 * @throws EmptySetException
@@ -109,6 +111,7 @@ public class Data {
 
 	/**
 	 * Getter for database's schema.
+	 * 
 	 * @return the explanatory set
 	 */
 	public List<Attribute> getAttributeSchema() {
@@ -120,22 +123,27 @@ public class Data {
 	 * 
 	 * @param clusteredData
 	 *            indexes of attributes
-	 * @param attribute attribute
+	 * @param attribute
+	 *            attribute
 	 * @return calls {@link data.Data#computePrototype(Set, ContinuousAttribute)} or
 	 *         {@link data.Data#computePrototype(Set, DiscreteAttribute)}
 	 */
 	public Object computePrototype(final Set<Integer> clusteredData, final Attribute attribute) {
 
-		if (attribute instanceof ContinuousAttribute)
+		if (attribute instanceof ContinuousAttribute) {
 			return computePrototype(clusteredData, (ContinuousAttribute) attribute);
+		}
 		return computePrototype(clusteredData, (DiscreteAttribute) attribute);
 
 	}
 
 	/**
 	 * Compute's a prototype for a continuous attribute.
-	 * @param idList list of attribute indexes
-	 * @param attribute continuous attribute
+	 * 
+	 * @param idList
+	 *            list of attribute indexes
+	 * @param attribute
+	 *            continuous attribute
 	 * @return computed value (continuous
 	 */
 	Double computePrototype(final Set<Integer> idList, final ContinuousAttribute attribute) {
@@ -148,8 +156,11 @@ public class Data {
 
 	/**
 	 * Compute prototype for discrete attribute.
-	 * @param idList list with attribute's index.
-	 * @param attribute discrete attribute
+	 * 
+	 * @param idList
+	 *            list with attribute's index.
+	 * @param attribute
+	 *            discrete attribute
 	 * @return computed value
 	 */
 	String computePrototype(final Set<Integer> idList, final DiscreteAttribute attribute) {
@@ -178,8 +189,11 @@ public class Data {
 	}
 
 	/**
-	 * Gets the set of items - pairs of pairs of ({@link data.Attribute} - value) indexed at index
-	 * @param index index for values
+	 * Gets the set of items - pairs of pairs of ({@link data.Attribute} - value)
+	 * indexed at index
+	 * 
+	 * @param index
+	 *            index for values
 	 * @return the set of items with values indexed at index
 	 */
 	public Tuple getItemSet(final int index) {
@@ -198,7 +212,9 @@ public class Data {
 
 	/**
 	 * Generates a set of clusters.
-	 * @param numberOfClusters number of clusters to generate.
+	 * 
+	 * @param numberOfClusters
+	 *            number of clusters to generate.
 	 * @return set of the clusters generated
 	 * @throws OutOfRangeSampleSize
 	 */
@@ -206,7 +222,7 @@ public class Data {
 		int[] centroidIndexes = new int[numberOfClusters];
 		// scegli k centroid differenti in data
 		final Random rand = new Random(System.currentTimeMillis());
-		//rand.setSeed(System.currentTimeMillis());
+		// rand.setSeed(System.currentTimeMillis());
 
 		for (int i = 0; i < numberOfClusters; i++) {
 			boolean found = false;
@@ -233,15 +249,17 @@ public class Data {
 
 	/**
 	 * Compare two rows of the table.
-	 * @param row1 
+	 * 
+	 * @param row1
 	 * @param row2
 	 * @return true if the two rows are equal, false otherwise
 	 */
 	private boolean compare(final int row1, final int row2) {
 
 		for (int i = 0; i < getNumberOfExplanatoryAttributes(); i++) {
-			if (!(data.get(row1).get(i).equals(data.get(row2).get(i))))
+			if (!(data.get(row1).get(i).equals(data.get(row2).get(i)))) {
 				return false;
+			}
 		}
 		return true;
 	}
