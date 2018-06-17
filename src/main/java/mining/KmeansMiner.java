@@ -14,21 +14,42 @@ public class KmeansMiner {
 
 	private ClusterSet clusterSet;
 
-	public KmeansMiner(String fileName) throws FileNotFoundException, IOException, ClassNotFoundException {
+	/**
+	 * Class constructor.
+	 * @param fileName name of input file.
+	 * @throws FileNotFoundException
+	 * @throws IOException
+	 * @throws ClassNotFoundException
+	 */
+	public KmeansMiner(final String fileName) throws FileNotFoundException, IOException, ClassNotFoundException {
 		ObjectInputStream inputStream = new ObjectInputStream(new FileInputStream(fileName));
 		clusterSet = (ClusterSet) inputStream.readObject();
 		inputStream.close();
 	}
 
-	public KmeansMiner(int k) {
-		clusterSet = new ClusterSet(k);
+	/**
+	 * Class constructor.
+	 * @param means number of clusters.
+	 */
+	public KmeansMiner(final int means) {
+		clusterSet = new ClusterSet(means);
 	}
 
+	/**
+	 * Getter for {@link ClusterSet}.
+	 * @return the {@link ClusterSet}.
+	 */
 	public ClusterSet getClusterSet() {
 		return clusterSet;
 	}
 
-	public int kmeans(Data data) throws OutOfRangeSampleSize {
+	/**
+	 * 
+	 * @param data
+	 * @return
+	 * @throws OutOfRangeSampleSize
+	 */
+	public int kmeans(final Data data) throws OutOfRangeSampleSize {
 		int numberOfIterations = 0;
 		clusterSet.initializeCentroids(data);
 		boolean changedCluster = false;
@@ -56,6 +77,12 @@ public class KmeansMiner {
 		return numberOfIterations;
 	}
 
+	/**
+	 * 
+	 * @param fileName
+	 * @throws FileNotFoundException
+	 * @throws IOException
+	 */
 	public void salva(String fileName) throws FileNotFoundException, IOException {
 		FileOutputStream inputFile = new FileOutputStream(fileName);
 		ObjectOutputStream outObject = new ObjectOutputStream(inputFile);
