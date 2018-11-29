@@ -6,12 +6,21 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.io.Serializable;
+import java.sql.SQLException;
 
 import data.Data;
 import data.OutOfRangeSampleSize;
+import database.DatabaseConnectionException;
+import database.EmptySetException;
+import database.NoValueException;
 
-public class KmeansMiner {
+public class KMeansMiner implements Serializable{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 5834754062973042220L;
 	private ClusterSet clusterSet;
 
 	/**
@@ -21,7 +30,7 @@ public class KmeansMiner {
 	 * @throws IOException
 	 * @throws ClassNotFoundException
 	 */
-	public KmeansMiner(final String fileName) throws FileNotFoundException, IOException, ClassNotFoundException {
+	public KMeansMiner(final String fileName) throws FileNotFoundException, IOException, ClassNotFoundException {
 		ObjectInputStream inputStream = new ObjectInputStream(new FileInputStream(fileName));
 		clusterSet = (ClusterSet) inputStream.readObject();
 		inputStream.close();
@@ -31,7 +40,7 @@ public class KmeansMiner {
 	 * Class constructor.
 	 * @param means number of clusters.
 	 */
-	public KmeansMiner(final int means) {
+	public KMeansMiner(final int means){
 		clusterSet = new ClusterSet(means);
 	}
 
@@ -89,4 +98,17 @@ public class KmeansMiner {
 		outObject.writeObject(clusterSet);
 		outObject.close();
 	}
+	/*
+	public static void main(String[] args) {
+		KMeansMiner kMeansMiner = new KMeansMiner(3);
+		try {
+			Data data = new Data("playtennis");
+			int num = kMeansMiner.kmeans(data);
+			System.out.println(num + "\n" + kMeansMiner.getClusterSet().toString(data));
+		} catch (DatabaseConnectionException | SQLException | EmptySetException | NoValueException | OutOfRangeSampleSize e) {
+			e.printStackTrace();
+		}
+		
+		
+	}*/
 }

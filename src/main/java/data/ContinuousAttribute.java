@@ -8,6 +8,10 @@ package data;
  */
  public final class ContinuousAttribute extends Attribute {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -2215535102086935282L;
 	private double minRange;
 	private double maxRange;
 

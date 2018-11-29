@@ -1,16 +1,22 @@
 package mining;
 
+import java.io.Serializable;
+
 import data.Data;
 import data.OutOfRangeSampleSize;
 import data.Tuple;
 
 /**
- * Class to manipulate a set of {@link Cluster}.
+ * Class to manipulate a set of {@link Cluster}s.
  * @author Cristea Gheorghita
  *
  */
-public class ClusterSet {
+public class ClusterSet implements Serializable{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 6614033451260145431L;
 	private Cluster[] clusterCollection;
 	int numberOfClusters = 0;
 
@@ -18,7 +24,7 @@ public class ClusterSet {
 	 * Class contructor.
 	 * @param means number of cluster to generate.
 	 */
-	public ClusterSet(final int means) {
+	public ClusterSet(final int means){
 		clusterCollection = new Cluster[means];
 	}
 
@@ -26,7 +32,7 @@ public class ClusterSet {
 	 * Adds a {@link Cluster} to our set.
 	 * @param cluster {@link Cluster} to add.
 	 */
-	public void addCluster(final Cluster cluster) {
+	public void addCluster(final Cluster cluster){
 		clusterCollection[numberOfClusters] = cluster;
 		numberOfClusters++;
 	}

@@ -12,6 +12,11 @@ package data;
 public final class ContinuousItem extends Item {
 
 	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 6973061477157208285L;
+
+	/**
 	 * Class constructor.
 	 * @param attribute {@link Item}'s {@link Attribute}
 	 * @param value {@link Item}'s's value.

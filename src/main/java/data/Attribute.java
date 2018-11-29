@@ -1,5 +1,7 @@
 package data;
 
+import java.io.Serializable;
+
 /**
  * Abstract class Attribute.
  * 
@@ -7,8 +9,12 @@ package data;
  *
  */
 
-public abstract class Attribute {
+public abstract class Attribute implements Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -4296182488932556748L;
 	private String name;
 	private int index;
 

@@ -9,6 +9,7 @@ package database;
  */
 public class NoValueException extends Exception {
 
+	String message = "no value";
 	/**
 	 * 
 	 */
@@ -50,6 +51,11 @@ public class NoValueException extends Exception {
 	 */
 	public NoValueException(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {
 		super(message, cause, enableSuppression, writableStackTrace);
+	}
+	
+	@Override
+	public String getMessage() {
+		return message;
 	}
 
 }

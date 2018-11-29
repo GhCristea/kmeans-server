@@ -1,5 +1,6 @@
 package data;
 
+import java.io.Serializable;
 import java.util.Set;
 
 /**
@@ -7,8 +8,15 @@ import java.util.Set;
  * @author Cristea Gheorghita
  *
  */
-public abstract class Item {
+public abstract class Item implements Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 4242265190896354471L;
+	/**
+	 * 
+	 */
 	private Attribute attribute;
 	Object value;
 	

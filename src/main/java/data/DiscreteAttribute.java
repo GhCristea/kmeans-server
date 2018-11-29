@@ -12,6 +12,10 @@ import java.util.TreeSet;
  */
 public final class DiscreteAttribute extends Attribute implements Iterable<String> {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -3641225352779535697L;
 	private TreeSet<String> values;
 
 	/**

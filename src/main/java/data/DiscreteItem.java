@@ -10,6 +10,11 @@ package data;
 public final class DiscreteItem extends Item {
 
 	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 7394584854256268249L;
+
+	/**
 	 * Class constructor.
 	 * 
 	 * @param attribute

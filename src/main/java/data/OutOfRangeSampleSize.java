@@ -2,6 +2,7 @@ package data;
 
 public class OutOfRangeSampleSize extends Throwable {
 
+	String message = "your k number is greater then the possible number of clusters";
 	/**
 	 * 
 	 */
@@ -11,9 +12,12 @@ public class OutOfRangeSampleSize extends Throwable {
 	}
 
 	public void print() {
-		System.out.println("il numero k di cluster inserito da tastiera è maggiore maggiore rispetto al"
-				+ " numero di centroidi generabili dall'insieme di transazioni.");
+		System.out.println(message);
 
 	}
 
+	@Override
+	public String getMessage() {
+		return message;
+	}
 }

@@ -1,5 +1,6 @@
 package mining;
 
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -11,7 +12,12 @@ import data.Tuple;
  * @author docente
  *
  */
-public class Cluster {
+public class Cluster implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 2284405905366098932L;
+
 	private Tuple centroid;
 
 	private Set<Integer> clusteredData;

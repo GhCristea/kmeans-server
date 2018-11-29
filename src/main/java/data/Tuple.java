@@ -1,5 +1,6 @@
 package data;
 
+import java.io.Serializable;
 import java.util.Set;
 
 /**
@@ -8,8 +9,12 @@ import java.util.Set;
  * @author Cristea Gheorghita
  *
  */
-public class Tuple {
+public class Tuple implements Serializable{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 567877450055162399L;
 	Item[] tuple;
 
 	/**
@@ -90,5 +95,13 @@ public class Tuple {
 		
 		return totalDistance / clusteredData.size();
 	}
-
+	
+	@Override
+	public String toString() {
+		String out = ""; 
+		for (int i = 0; i < tuple.length; i++) {
+			out+= tuple[i].toString();
+		}
+		return out;
+	}
 }

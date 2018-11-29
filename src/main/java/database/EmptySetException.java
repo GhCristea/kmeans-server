@@ -9,6 +9,7 @@ package database;
  */
 public class EmptySetException extends Exception {
 
+	String message = "Empty set";
 	/**
 	 * 
 	 */
@@ -52,4 +53,8 @@ public class EmptySetException extends Exception {
 		super(message, cause, enableSuppression, writableStackTrace);
 	}
 
+	@Override
+	public String getMessage() {
+		return message;
+	}
 }

@@ -218,7 +218,10 @@ public class Data {
 	 * @return set of the clusters generated
 	 * @throws OutOfRangeSampleSize
 	 */
-	public int[] sampling(final int numberOfClusters) throws OutOfRangeSampleSize {
+	public int[] sampling(final int numberOfClusters) throws OutOfRangeSampleSize  {
+		if(numberOfClusters > getNumberOfExamples()) {
+			throw new OutOfRangeSampleSize();
+		}
 		int[] centroidIndexes = new int[numberOfClusters];
 		// scegli k centroid differenti in data
 		final Random rand = new Random(System.currentTimeMillis());
