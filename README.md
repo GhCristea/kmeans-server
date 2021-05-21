@@ -1,3 +1,4 @@
+A java implementation of the k-means classification algorithm
 # kmeans
 [![Build Status](https://travis-ci.com/GhCristea/kmeans.svg?token=UdhVggv4gnpqRfrR3Tf3&branch=master)](https://travis-ci.com/GhCristea/kmeans)
 
